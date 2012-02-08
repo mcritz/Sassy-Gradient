@@ -1,0 +1,25 @@
+// set up some variables
+$green:#c5cd17;
+$lightgreen:#f6ffb4;
+$darkgreen:#526b08;
+
+// create a basic two-stop gradient mixin
+@mixin gradient($gradstart,$gradstop,$stop1,$stop2) {
+  background: mix($gradstart, $gradstop, $stop1);
+                // mix(color1, with_color2, weighted_percentage)
+  background: -moz-linear-gradient(top, $gradstart $stop1, $gradstop $stop2);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop($stop1,$gradstart), color-stop($stop2,$gradstop));
+  background: -webkit-linear-gradient(top, $gradstart $stop1,$gradstop $stop2);
+  background: -o-linear-gradient(top, $gradstart $stop1,$gradstop $stop2);
+  background: -ms-linear-gradient(top, $gradstart $stop1,$gradstop $stop2);
+  background: linear-gradient(top, $gradstart $stop1,$gradstop $stop2);
+}
+
+.button {
+  // call your mixin
+  @include gradient($green,$darkgreen,0%,100%);
+  
+  color: $lightgreen;
+  border: 1px solid $lightgreen;
+  border-radius: 4px;
+}
